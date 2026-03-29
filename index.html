@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>个人主页</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+        body {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            line-height: 1.6;
+            color: #333;
+        }
+        .lang-switch {
+            text-align: right;
+            margin-bottom: 20px;
+        }
+        button {
+            padding: 8px 16px;
+            margin-left: 10px;
+            cursor: pointer;
+            border: 1px solid #333;
+            background: #fff;
+            border-radius: 4px;
+        }
+        button.active {
+            background: #333;
+            color: #fff;
+        }
+        section {
+            margin-bottom: 30px;
+            padding: 20px;
+            border: 1px solid #eee;
+            border-radius: 8px;
+        }
+        h1, h2 {
+            margin-bottom: 15px;
+            color: #2c3e50;
+        }
+        .skill-tag {
+            display: inline-block;
+            background: #ecf0f1;
+            padding: 4px 10px;
+            border-radius: 16px;
+            margin: 5px 5px 5px 0;
+        }
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            color: #7f8c8d;
+        }
+    </style>
+</head>
+<body>
+    <div class="lang-switch">
+        <button id="zhBtn" class="active">中文</button>
+        <button id="enBtn">English</button>
+    </div>
+
+    <!-- 中文内容 -->
+    <div id="zhContent">
+        <h1>你的姓名</h1>
+        <section>
+            <h2>基本信息</h2>
+            <p>学校/专业：华东政法大学 金融专业</p>
+            <p>研究/职业方向：数据分析</p>
+            <p>联系邮箱：2637582314@qq.com</p>
+        </section>
+
+        <section>
+            <h2>个人简介</h2>
+            <p>细心沉稳，做事踏实</p>
+        </section>
+
+        <section>
+            <h2>技能</h2>
+            <span class="skill-tag">Python</span>
+            <span class="skill-tag">数据分析</span>
+            <span class="skill-tag">SQL</span>
+            <span class="skill-tag">统计学</span>
+            <span class="skill-tag">写作</span>
+        </section>
+
+        <section>
+            <h2>教育/课程经历</h2>
+            <p>2024.09-2028.06 华东政法大学 金融专业</p>
+            <p>相关课程：微观经济学等</p>
+        </section>
+    </div>
+
+    <!-- 英文内容 -->
+    <div id="enContent" style="display: none;">
+        <h1>Your Name</h1>
+        <section>
+            <h2>Basic Info</h2>
+            <p>University/Major: XX University, XX Major</p>
+            <p>Research/Career Interest: Data Analysis/Machine Learning/Development</p>
+            <p>Email: your_email@xxx.com</p>
+        </section>
+
+        <section>
+            <h2>About Me</h2>
+            <p>Write your personal introduction here to highlight your strengths and value for HR/supervisor.</p>
+        </section>
+
+        <section>
+            <h2>Skills</h2>
+            <span class="skill-tag">Python</span>
+            <span class="skill-tag">Data Analysis</span>
+            <span class="skill-tag">SQL</span>
+            <span class="skill-tag">Statistics</span>
+            <span class="skill-tag">Writing</span>
+        </section>
+
+        <section>
+            <h2>Education</h2>
+            <p>20XX.09-20XX.06 XX University, XX Major</p>
+            <p>Relevant Courses: Python & Data Structures, Machine Learning, Database Principles etc.</p>
+        </section>
+    </div>
+
+    <footer>
+        最后更新日期 / Last Updated: <span id="updateDate"></span>
+    </footer>
+
+    <script>
+        // 语言切换逻辑
+        const zhBtn = document.getElementById('zhBtn');
+        const enBtn = document.getElementById('enBtn');
+        const zhContent = document.getElementById('zhContent');
+        const enContent = document.getElementById('enContent');
+
+        zhBtn.addEventListener('click', () => {
+            zhContent.style.display = 'block';
+            enContent.style.display = 'none';
+            zhBtn.classList.add('active');
+            enBtn.classList.remove('active');
+            document.documentElement.lang = 'zh-CN';
+        });
+
+        enBtn.addEventListener('click', () => {
+            zhContent.style.display = 'none';
+            enContent.style.display = 'block';
+            enBtn.classList.add('active');
+            zhBtn.classList.remove('active');
+            document.documentElement.lang = 'en';
+        });
+
+        // 自动填充最后更新日期
+        const date = new Date();
+        const options = {year: 'numeric', month: '2-digit', day: '2-digit'};
+        document.getElementById('updateDate').textContent = date.toLocaleDateString('zh-CN', options) + ' / ' + date.toLocaleDateString('en-US', options);
+    </script>
+</body>
+</html>
